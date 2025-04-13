@@ -1,7 +1,10 @@
-import Image from "next/image";
+import URLShortenForm from "@/components/URLShortenForm";
 
 export default function Home() {
   return (
-    <h1>Hello and welcome to my URL Shortener Website</h1>
+    <div className="flex flex-col items-center text-center">
+      <h1>Hello and welcome to my URL Shortener Website</h1>
+        <URLShortenForm />
+    </div>
   );
 }
