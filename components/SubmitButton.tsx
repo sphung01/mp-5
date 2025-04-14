@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 export default function SubmitButton() {
     return(
         <Button 
+            type="submit"
             sx={{
                 bgcolor: "black",
                 color: "white",

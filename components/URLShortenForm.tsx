@@ -1,3 +1,4 @@
+"use client"
 import SubmitButton from "./SubmitButton";
 import InputBox from "./InputBox";
 
