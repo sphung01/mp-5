@@ -1,6 +1,5 @@
 "use server";
 import getCollection, { URL_COLLECTION } from "@/db";
-import { URLProps } from "@/types";
 
 export default async function createShortURL(
     url: string,
