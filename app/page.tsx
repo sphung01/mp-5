@@ -1,6 +1,6 @@
 import URLShortenForm from "@/components/URLShortenForm";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="flex flex-col items-center text-center space-y-6">
       <h2 className="text-3xl font-bold">
