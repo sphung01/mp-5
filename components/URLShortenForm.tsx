@@ -5,11 +5,12 @@ import createShortURL from "@/lib/createShortURL";
 
 export default function URLShortenForm() {
     const [url, setUrl] = useState("");
+    const [alias, setAlias] = useState("");
 
     const handleUrl = (event: React.FormEvent) => {
         event.preventDefault();
         console.log(url);
-        createShortURL(url);
+        createShortURL(url, alias);
     }
 
     return(
@@ -24,8 +25,18 @@ export default function URLShortenForm() {
                 bg-white w-75 h-10"
                 value={url}
                 type="url"
-                placeholder="Enter your URL here"
+                placeholder="Enter URL here"
                 onChange={(e) => setUrl(e.target.value)}
+                required
+            />
+            <input
+                className="text-black text-center text-lg rounded-md 
+                border-round border-groove border-4
+                bg-white w-75 h-10"
+                value={alias}
+                type="text"
+                placeholder="Enter custom alias here "
+                onChange={(e) => setAlias(e.target.value)}
                 required
             />
             <Button 

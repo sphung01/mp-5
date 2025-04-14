@@ -4,10 +4,11 @@ import { URLProps } from "@/types";
 
 export default async function createShortURL(
     url: string,
+    alias: string,
 ): Promise<URLProps> {
     const p = {
         url: url,
-        views: 0,
+        alias: alias,
     };
 
     const urlCollection = await getCollection(URL_COLLECTION);
