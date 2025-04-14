@@ -5,11 +5,17 @@ import { URLProps } from "@/types";
 export default async function createShortURL(
     url: string,
     alias: string,
-): Promise<URLProps> {
+): Promise<string> {
     const p = {
         url: url,
         alias: alias,
     };
+
+    const urlRes = fetch(`${url}`);
+    
+    if(!urlRes){
+        throw new Error("Failed to fetch the URL");
+    }
 
     const urlCollection = await getCollection(URL_COLLECTION);
     const res = await urlCollection.insertOne({...p});
@@ -18,5 +24,5 @@ export default async function createShortURL(
         throw new Error("DB insert failed");
     }
 
-    return { ...p, id: res.insertedId.toHexString()};
+    return alias;
 }
