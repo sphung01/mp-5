@@ -11,6 +11,8 @@ export default function InputBox() {
           bg-white 
           w-75 
           h-10"
+          placeholder="Enter your URL here"
+          required
         />
     );
 }
