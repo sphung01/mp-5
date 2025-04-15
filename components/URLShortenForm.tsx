@@ -2,18 +2,23 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import createShortURL from "@/lib/createShortURL";
-import Link from "next/link";
+//import Link from "next/link";
 
 export default function URLShortenForm() {
     const [url, setUrl] = useState("");
     const [alias, setAlias] = useState("");
-    const [result, setResult] = useState<Promise<string>>();
+    const [resultPromise, setResultPromise] = useState<Promise<string>>();
+    const [message, setMessage] = useState("");
 
     const handleUrl = (event: React.FormEvent) => {
         event.preventDefault();
         console.log(url);
-        setResult(createShortURL(url, alias));
-        //If the createShortURl passes, then we display the shorten url to user.
+        setResultPromise(createShortURL(url, alias));
+        if(resultPromise) {
+            setMessage("Invalid URL: Could not verify URL. Please try again.");
+        } else {
+            setMessage("URL shortened successfully!");
+        }
     }
 
     return(
@@ -28,7 +33,7 @@ export default function URLShortenForm() {
                     border-round border-groove border-4
                     bg-white w-125 h-10"
                     value={url}
-                    type="url"
+                    type="text"
                     placeholder="Enter URL here"
                     onChange={(e) => setUrl(e.target.value)}
                     required
@@ -54,9 +59,7 @@ export default function URLShortenForm() {
                     Shorten URL!
                 </Button>
             </form>
-            <Link href={`/url/${alias}`}>
-                <p>{result}</p>
-            </Link>
+            <p>{message}</p>
         </>
         
     );

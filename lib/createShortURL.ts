@@ -10,11 +10,11 @@ export default async function createShortURL(
         alias: alias,
     };
 
-    const urlRes = fetch(`${url}`);
+    const urlRes = await fetch(`${url}`);
     
-    if(!urlRes){
-        throw new Error("Failed to fetch the URL");
-    }
+    if(!urlRes.ok){
+        throw new Error("Failed to fetch URL");
+    } 
 
     const urlCollection = await getCollection(URL_COLLECTION);
     const res = await urlCollection.insertOne({...p});
