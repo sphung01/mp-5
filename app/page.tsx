@@ -2,7 +2,7 @@ import URLShortenForm from "@/components/URLShortenForm";
 
 export default async function Home() {
   return (
-    <main className="flex flex-col items-center text-center space-y-6">
+    <main className="flex flex-col items-center text-center space-y-6 bg-green-100 min-h-screen">
       <h2 className="text-3xl font-bold">
         URL Shortener
       </h2>

@@ -20,13 +20,13 @@ export default function URLShortenForm() {
         <>
             <form 
                 className="flex flex-col items-center justify-center 
-                    bg-green-400 w-100 h-75 rounded-md"
+                    bg-green-600 w-200 h-100 rounded-md space-y-6 border-groove border-4"
                 onSubmit={handleUrl}
                 >
                 <input
                     className="text-black text-center text-lg rounded-md 
                     border-round border-groove border-4
-                    bg-white w-75 h-10"
+                    bg-white w-125 h-10"
                     value={url}
                     type="url"
                     placeholder="Enter URL here"
