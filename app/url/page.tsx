@@ -4,7 +4,7 @@ export default function ErrorPage() {
             <p className="font-bold text-4xl">
                 You probably clicked on the link that leads you to no where. 
                 Please click on the title, top left, to return to the original page.
-                And this time, be sure to enter your valid URL.
+                And this time, be sure to enter your valid URL and a custom alias that was never made.
             </p>
         </main>
     )

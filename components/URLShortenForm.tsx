@@ -29,6 +29,10 @@ export default function URLShortenForm() {
         }
     }
 
+    const copyButton = () => {
+        navigator.clipboard.writeText(`http://localhost:3000/url/${currentAlias}`);
+    }
+
     return(
         <>
             <form 
@@ -54,7 +58,7 @@ export default function URLShortenForm() {
                     bg-white w-75 h-10"
                     value={alias}
                     type="text"
-                    placeholder="Enter custom alias here "
+                    placeholder="your-custom-alias"
                     onChange={(e) => setAlias(e.target.value)}
                     required
                 />
@@ -74,16 +78,48 @@ export default function URLShortenForm() {
                 <div className="flex flex-col items-center justify-center 
                     bg-white w-200 h-25 rounded-md space-y-6 border-groove border-4">
                     <p className="text-green-500 font-bold">{message}</p>
-                    <Link href={`/url/${alias}`} className="text-xl hover:underline">
-                        http://localhost:3000/{currentAlias}
-                    </Link>
+                    <div className="flex flex-row justify-between items-center space-x-50">
+                        <Link href={`/url/${currentAlias}`} 
+                              className="text-xl hover:underline"
+                              target="_blank"
+                        >
+                            http://localhost:3000/url/{currentAlias}
+                        </Link>
+                        <Button 
+                            type="submit"
+                            sx={{
+                                bgcolor: "black",
+                                color: "white",
+                                width: "30px",
+                                margin: "4px"
+                            }}
+                            onClick={copyButton}>
+                            COPY!
+                        </Button>
+                    </div>
                 </div> :
                 <div className="flex flex-col items-center justify-center 
                     bg-white w-200 h-25 rounded-md space-y-6 border-groove border-4">
                     <p className="text-red-500 font-bold">{message}</p>
-                    <Link href={`/url/${alias}`} className="text-xl hover:underline">
-                        http://localhost:3000/{currentAlias}
-                    </Link>
+                    <div className="flex flex-row justify-between items-center space-x-50">
+                        <Link href={`/url/${currentAlias}`} 
+                              className="text-xl hover:underline"
+                              target="_blank"
+                        >
+                            http://localhost:3000/url/{currentAlias}
+                        </Link>
+                        <Button 
+                            type="submit"
+                            sx={{
+                                bgcolor: "black",
+                                color: "white",
+                                width: "30px",
+                                margin: "4px"
+                            }}
+                            onClick={copyButton}>
+                            COPY!
+                        </Button>
+                    </div>
                 </div>
             }
         </>
