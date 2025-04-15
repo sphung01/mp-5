@@ -2,22 +2,30 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import createShortURL from "@/lib/createShortURL";
-//import Link from "next/link";
+import Link from "next/link";
 
 export default function URLShortenForm() {
     const [url, setUrl] = useState("");
     const [alias, setAlias] = useState("");
-    const [resultPromise, setResultPromise] = useState<Promise<string>>();
-    const [message, setMessage] = useState("");
+    const [currentAlias, setCurrentAlias] = useState("");
+    const [message, setMessage] = useState("Please enter URL.");
+    const [validation, setValidation] = useState(false);
 
-    const handleUrl = (event: React.FormEvent) => {
+    const handleUrl = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(url);
-        setResultPromise(createShortURL(url, alias));
-        if(resultPromise) {
-            setMessage("Invalid URL: Could not verify URL. Please try again.");
-        } else {
-            setMessage("URL shortened successfully!");
+        const result = await createShortURL(url, alias);
+        if(result == "URL ERROR") {
+            setValidation(false);
+            setMessage("ERROR: URL is invalid. Please try again.");
+        } 
+        else if(result == "ERROR") {
+            setValidation(false);
+            setMessage(`ERROR: The alias name "${alias}" already exists.`);
+        }
+        else {
+            setValidation(true);
+            setCurrentAlias(alias);
+            setMessage("URL shortened successfully! You can click or copy link below!");
         }
     }
 
@@ -25,19 +33,21 @@ export default function URLShortenForm() {
         <>
             <form 
                 className="flex flex-col items-center justify-center 
-                    bg-green-600 w-200 h-100 rounded-md space-y-6 border-groove border-4"
+                    bg-green-500 w-200 h-100 rounded-md space-y-2 border-groove border-4"
                 onSubmit={handleUrl}
-                >
+            >
+                <p className="font-bold">URL</p>
                 <input
                     className="text-black text-center text-lg rounded-md 
                     border-round border-groove border-4
                     bg-white w-125 h-10"
                     value={url}
                     type="text"
-                    placeholder="Enter URL here"
+                    placeholder="https://example.com/url/"
                     onChange={(e) => setUrl(e.target.value)}
                     required
                 />
+                <p className="font-bold">Custom Alias</p>
                 <input
                     className="text-black text-center text-lg rounded-md 
                     border-round border-groove border-4
@@ -59,8 +69,23 @@ export default function URLShortenForm() {
                     Shorten URL!
                 </Button>
             </form>
-            <p>{message}</p>
+            {
+                validation ? 
+                <div className="flex flex-col items-center justify-center 
+                    bg-white w-200 h-25 rounded-md space-y-6 border-groove border-4">
+                    <p className="text-green-500 font-bold">{message}</p>
+                    <Link href={`/url/${alias}`} className="text-xl hover:underline">
+                        http://localhost:3000/{currentAlias}
+                    </Link>
+                </div> :
+                <div className="flex flex-col items-center justify-center 
+                    bg-white w-200 h-25 rounded-md space-y-6 border-groove border-4">
+                    <p className="text-red-500 font-bold">{message}</p>
+                    <Link href={`/url/${alias}`} className="text-xl hover:underline">
+                        http://localhost:3000/{currentAlias}
+                    </Link>
+                </div>
+            }
         </>
-        
     );
 }
