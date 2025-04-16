@@ -87,7 +87,7 @@ export default function URLShortenForm() {
                               className="text-xl hover:underline"
                               target="_blank"
                         >
-                            http://localhost:3000/url/{currentAlias}
+                            https://mp-5-olive.vercel.app/url/{currentAlias}
                         </Link>
                         <Button 
                             type="submit"
@@ -110,7 +110,7 @@ export default function URLShortenForm() {
                               className="text-xl hover:underline"
                               target="_blank"
                         >
-                            http://localhost:3000/url/{currentAlias}
+                            https://mp-5-olive.vercel.app/url/{currentAlias}
                         </Link>
                         <Button 
                             type="submit"
