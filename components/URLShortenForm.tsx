@@ -34,7 +34,7 @@ export default function URLShortenForm() {
     }
 
     const copyButton = () => {
-        navigator.clipboard.writeText(`https://mp-5-olive.vercel.app/${currentAlias}`);
+        navigator.clipboard.writeText(`https://mp-5-olive.vercel.app/url/${currentAlias}`);
     }
 
     return(
