@@ -20,6 +20,10 @@ export default async function createShortURL(
         return "URL ERROR";
     }
 
+    if(alias == ""){
+        return "ERROR EMPTY"
+    }
+
     const urlCollection = await getCollection(URL_COLLECTION);
     const data = await urlCollection.findOne({alias: p.alias});
 

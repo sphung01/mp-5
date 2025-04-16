@@ -18,6 +18,10 @@ export default function URLShortenForm() {
             setValidation(false);
             setMessage("ERROR: URL is invalid. Please try again.");
         } 
+        else if(result == "ERROR EMPTY") {
+            setValidation(false);
+            setMessage(`ERROR: The alias input is empty! Please enter custom alias.`);
+        }
         else if(result == "ERROR") {
             setValidation(false);
             setMessage(`ERROR: The alias name "${alias}" already exists.`);
