@@ -85,7 +85,6 @@ export default function URLShortenForm() {
                     <div className="flex flex-row justify-between items-center space-x-50">
                         <Link href={`/url/${currentAlias}`} 
                               className="text-xl hover:underline"
-                              target="_blank"
                         >
                             https://mp-5-olive.vercel.app/url/{currentAlias}
                         </Link>
@@ -108,7 +107,6 @@ export default function URLShortenForm() {
                     <div className="flex flex-row justify-between items-center space-x-50">
                         <Link href={`/url/${currentAlias}`} 
                               className="text-xl hover:underline"
-                              target="_blank"
                         >
                             https://mp-5-olive.vercel.app/url/{currentAlias}
                         </Link>
