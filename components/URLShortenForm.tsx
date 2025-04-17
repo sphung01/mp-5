@@ -16,7 +16,7 @@ export default function URLShortenForm() {
         const result = await createShortURL(url, alias);
         if(result == "URL ERROR") {
             setValidation(false);
-            setMessage("ERROR: URL is invalid OR The URL is not accessible. Please try again.");
+            setMessage("ERROR: URL is invalid. Please try again.");
         } 
         else if(result == "ERROR EMPTY") {
             setValidation(false);

@@ -12,7 +12,7 @@ export default async function createShortURL(
 
     try {
         const urlRes = await fetch(`${url}`);
-        if(!urlRes.ok) {
+        if(urlRes.status >= 404) {
             return "URL ERROR";
         }
     } catch (error) {
